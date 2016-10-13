@@ -26,7 +26,7 @@ public class WordCountTopology {
         builder.setBolt("word-normalizer", new WordNormalizer(), 3).shuffleGrouping("word-reader") ;
         builder.setBolt("word-counter", new WordCount(), 3).fieldsGrouping("word-normalizer", new Fields("no")) ;
 
-        //config
+        // config
         Config config = new Config() ;
         config.put("wordFile", "text.txt") ;
         config.setDebug(false);
