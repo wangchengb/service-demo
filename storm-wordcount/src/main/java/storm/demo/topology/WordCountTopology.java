@@ -31,7 +31,7 @@ public class WordCountTopology {
         config.put("wordFile", "text.txt") ;
         config.setDebug(false);
 
-        //Topology
+        // Topology
         config.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1) ;
 
         if(args.length >= 1){
