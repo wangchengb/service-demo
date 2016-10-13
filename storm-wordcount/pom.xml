@@ -20,8 +20,8 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <!--<log4j.path>d://data/logs2/${project.artifactId}</log4j.path>-->
-                <log4j.path>/opt/storm/apache-storm-1.0.1/logs/test/${project.artifactId}</log4j.path>
+                <log4j.path>D://data/logs2/${project.artifactId}</log4j.path>
+                <!--<log4j.path>/opt/storm/apache-storm-1.0.1/logs/test/${project.artifactId}</log4j.path>-->
             </properties>
             <build>
                 <resources>

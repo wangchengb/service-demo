@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" strict="true">
 
+    <properties>
+        <property name="LOG_HOME">D://data/logs2</property>
+        <!-- 日志备份目录 -->
+        <property name="BACKUP_HOME">{LOG_HOME}/backup</property>
+        <property name="STAT_NAME">stat</property>
+        <property name="SERVER_NAME">global</property>
+    </properties>
+
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-.20t] %-5level %c{1} - %msg%n"/>
         </Console>
-        <RollingFile name="RollingFile" fileName="${log4j.path}/data.log"
-                     filePattern="${log4j.path}/data_%d{MM-dd-yyyy}.log">
+        <RollingFile name="RollingFile" fileName="${LOG_HOME}/data.log"
+                     filePattern="${LOG_HOME}/data_%d{MM-dd-yyyy}.log">
             <PatternLayout>
                 <Pattern>%d{dd HH:mm:ss} [%-.15t] %-5p %c{1} %m%n</Pattern>
             </PatternLayout>

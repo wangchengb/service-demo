@@ -1,5 +1,6 @@
 package storm.demo.topology;
 
+import org.apache.log4j.Logger;
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.StormSubmitter;
@@ -16,6 +17,9 @@ import storm.demo.spout.WordReader;
  * Created by chenwang206234 on 2016/10/12.
  */
 public class WordCountTopology {
+
+    private static final Logger logger = Logger.getLogger(WordCountTopology.class);
+
     public static void main(String[] args) throws InterruptedException {
         TopologyBuilder builder = new TopologyBuilder() ;
         builder.setSpout("word-reader", new WordReader(), 2) ;
@@ -37,11 +41,11 @@ public class WordCountTopology {
                 try {
                     StormSubmitter.submitTopology(args[0], config, builder.createTopology());
                 } catch (AlreadyAliveException e) {
-                    e.printStackTrace();
+                    logger.error("", e);
                 } catch (InvalidTopologyException e) {
-                    e.printStackTrace();
+                    logger.error("", e);
                 } catch (AuthorizationException e) {
-                    e.printStackTrace();
+                    logger.error("", e);
                 }
             }
         }else {
