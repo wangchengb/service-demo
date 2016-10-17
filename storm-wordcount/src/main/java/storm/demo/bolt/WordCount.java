@@ -35,15 +35,18 @@ public class WordCount implements IRichBolt{
 
     public void execute(Tuple tuple) {
         String str = tuple.getString(1) ;
-        if(!counter.containsKey(str)){
-            counter.put(str, 1) ;
-        }else{
-            counter.put(str, counter.get(str) + 1) ;
-        }
 
-        collector.ack(tuple);
-        //System.out.println("count : "+ count);
-        if(count.incrementAndGet() % 500 == 0){
+        if(str.contains("30") && counter.get(str) != null && counter.get(str) > 0){
+            //collector.fail(tuple);
+        }else{
+            if(!counter.containsKey(str)){
+                counter.put(str, 1) ;
+            }else{
+                counter.put(str, counter.get(str) + 1) ;
+            }
+            collector.ack(tuple);
+        }
+        if(count.incrementAndGet() % 10 == 0){
             printInfo();
         }
     }
@@ -61,10 +64,12 @@ public class WordCount implements IRichBolt{
     }
 
     public void printInfo(){
+        logger.info("------------------------------------------------------------");
         logger.info("-- Word Counter [" + name + "-" + id + "] -- count : "+count);
         for (Map.Entry<String, Integer> entry : counter.entrySet()) {
             logger.info("cleanup: "+entry.getKey() + " -> " + entry.getValue());
         }
+        logger.info("------------------------------------------------------------");
     }
 
 }

@@ -115,7 +115,7 @@
             <artifactId>storm-core</artifactId>
             <version>1.0.2</version>
             <!-- cluster or local -->
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
 
         </dependency>
     </dependencies>

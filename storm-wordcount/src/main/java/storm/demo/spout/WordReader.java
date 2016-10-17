@@ -6,6 +6,7 @@ import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.IRichSpout;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
+import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 import org.apache.storm.utils.Utils;
 
@@ -55,7 +56,7 @@ public class WordReader implements IRichSpout{
     }
 
     public void fail(Object o) {
-        //System.out.println("FAIL:" + o);
+        System.out.println("FAIL:" + o);
     }
 
     public void doSth(){
