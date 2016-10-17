@@ -91,6 +91,21 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!--<plugin>-->
+                <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<descriptorRefs>-->
+                        <!--<descriptorRef>jar-with-dependencies</descriptorRef>-->
+                    <!--</descriptorRefs>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<mainClass>storm.demo.topology.WordCountTopology</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
         </plugins>
     </build>
 
@@ -101,6 +116,7 @@
             <version>1.0.2</version>
             <!-- cluster or local -->
             <scope>provided</scope>
+
         </dependency>
     </dependencies>
 

@@ -24,7 +24,7 @@ public class WordCountTopology {
         TopologyBuilder builder = new TopologyBuilder() ;
         builder.setSpout("word-reader", new WordReader(), 2) ;
         builder.setBolt("word-normalizer", new WordNormalizer(), 3).shuffleGrouping("word-reader") ;
-        builder.setBolt("word-counter", new WordCount(), 3).fieldsGrouping("word-normalizer", new Fields("no")) ;
+        builder.setBolt("word-counter", new WordCount(), 3).setNumTasks(5).fieldsGrouping("word-normalizer", new Fields("no")).fieldsGrouping("word-reader", new Fields("no")) ;
 
         // config
         Config config = new Config() ;
@@ -52,7 +52,7 @@ public class WordCountTopology {
             //local cluster
             LocalCluster cluster = new LocalCluster() ;
             cluster.submitTopology("Getting-Started-Toplogie", config, builder.createTopology());
-            Thread.sleep(5000);
+            Thread.sleep(10000);
             cluster.shutdown();
         }
 

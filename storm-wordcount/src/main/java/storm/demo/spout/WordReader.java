@@ -7,6 +7,7 @@ import org.apache.storm.topology.IRichSpout;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Values;
+import org.apache.storm.utils.Utils;
 
 import java.util.Map;
 import java.util.Random;
@@ -45,12 +46,8 @@ public class WordReader implements IRichSpout{
     }
 
     public void nextTuple() {
-        try {
-            doSth() ;
-            Thread.sleep(10000) ;
-        } catch (InterruptedException e) {
-            logger.error("",e);
-        }
+        doSth() ;
+        Utils.sleep(10000);
     }
 
     public void ack(Object o) {

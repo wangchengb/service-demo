@@ -32,11 +32,11 @@ public class WordNormalizer implements IRichBolt {
         String sentence = tuple.getString(1) ;
         String[] words = sentence.split(" ") ;
         for(String word : words){
-            List a = new ArrayList() ;
+            Values a = new Values() ;
             a.add(index) ;
             a.add(word);
 
-            this.collector.emit(a) ;
+            this.collector.emit(tuple, a) ;
         }
         collector.ack(tuple);
     }

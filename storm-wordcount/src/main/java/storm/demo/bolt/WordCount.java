@@ -42,9 +42,8 @@ public class WordCount implements IRichBolt{
         }
 
         collector.ack(tuple);
-
+        //System.out.println("count : "+ count);
         if(count.incrementAndGet() % 500 == 0){
-            logger.info("count : " + count.get());
             printInfo();
         }
     }
@@ -62,7 +61,7 @@ public class WordCount implements IRichBolt{
     }
 
     public void printInfo(){
-        logger.info("-- Word Counter [" + name + "-" + id + "] --");
+        logger.info("-- Word Counter [" + name + "-" + id + "] -- count : "+count);
         for (Map.Entry<String, Integer> entry : counter.entrySet()) {
             logger.info("cleanup: "+entry.getKey() + " -> " + entry.getValue());
         }
