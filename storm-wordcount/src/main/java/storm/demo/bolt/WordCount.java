@@ -46,7 +46,7 @@ public class WordCount implements IRichBolt{
             }
             collector.ack(tuple);
         }
-        if(count.incrementAndGet() % 10 == 0){
+        if(count.incrementAndGet() % 800 == 0){
             printInfo();
         }
     }

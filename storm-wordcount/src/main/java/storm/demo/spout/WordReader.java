@@ -68,7 +68,8 @@ public class WordReader implements IRichSpout{
             Values v = new Values() ;
             v.add(r) ;
             v.add(strs[r]) ;
-            this.collector.emit(v, r+"") ;
+            this.collector.emit(v, v+"") ;
+            //this.collector.emit(r+"", v, r+"m") ;
         }
     }
 

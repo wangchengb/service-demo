@@ -8,7 +8,9 @@ import org.apache.storm.generated.AlreadyAliveException;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.InvalidTopologyException;
 import org.apache.storm.topology.TopologyBuilder;
+import org.apache.storm.trident.testing.FixedBatchSpout;
 import org.apache.storm.tuple.Fields;
+import org.apache.storm.tuple.Values;
 import storm.demo.bolt.WordCount;
 import storm.demo.bolt.WordNormalizer;
 import storm.demo.spout.WordReader;
@@ -20,11 +22,18 @@ public class WordCountTopology {
 
     private static final Logger logger = Logger.getLogger(WordCountTopology.class);
 
+    {
+
+        FixedBatchSpout spout = new FixedBatchSpout(new Fields("sentence"), 3, new Values("wang chen "), new Values("hello world !")) ;
+
+
+    }
+
     public static void main(String[] args) throws InterruptedException {
         TopologyBuilder builder = new TopologyBuilder() ;
-        builder.setSpout("word-reader", new WordReader(), 2) ;
+        builder.setSpout("word-reader", new WordReader(), 1) ;
         builder.setBolt("word-normalizer", new WordNormalizer(), 3).shuffleGrouping("word-reader") ;
-        builder.setBolt("word-counter", new WordCount(), 3).setNumTasks(5).fieldsGrouping("word-normalizer", new Fields("no")).fieldsGrouping("word-reader", new Fields("no")) ;
+        builder.setBolt("word-counter", new WordCount(), 3).setNumTasks(5).fieldsGrouping("word-normalizer", new Fields("no")).fieldsGrouping("word-reader", new Fields("no"));
         //builder.setBolt("word-counter", new WordCount(), 3).setNumTasks(5).fieldsGrouping("word-normalizer", new Fields("no")) ;
         //builder.setBolt("word-counter", new WordCount(), 3).setNumTasks(5).fieldsGrouping("word-reader", new Fields("no")) ;
 

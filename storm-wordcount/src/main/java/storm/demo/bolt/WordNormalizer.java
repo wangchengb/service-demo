@@ -39,10 +39,15 @@ public class WordNormalizer implements IRichBolt {
             Values a = new Values() ;
             a.add(index) ;
             a.add(word);
-
             if(index == 0 && new Random().nextBoolean() && new Random().nextBoolean()) {
-                this.collector.fail(tuple);
+                //this.collector.emit(a);
+                //this.collector.fail(tuple);
                 //logger.error(tuple);
+//                try {
+//                    Thread.sleep(1100l);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             }else{
                 this.collector.emit(tuple, a);
                 collector.ack(tuple);
